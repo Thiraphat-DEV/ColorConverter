@@ -55,6 +55,15 @@ export function parseColorInput(input: string): ColorChannels | null {
 		};
 	}
 
+	// A,R,G,B or R,G,B (0-255) — check before single decimal so "255, 85, 0" is not parsed as 255
+	const parts = raw.split(/[\s,]+/).map((s) => parseInt(s.trim(), 10));
+	if (parts.length === 3 && parts.every((n) => !Number.isNaN(n) && n >= 0 && n <= 255)) {
+		return { a: 255, r: parts[0], g: parts[1], b: parts[2] };
+	}
+	if (parts.length === 4 && parts.every((n) => !Number.isNaN(n) && n >= 0 && n <= 255)) {
+		return { a: parts[0], r: parts[1], g: parts[2], b: parts[3] };
+	}
+
 	// ARGB as single decimal (e.g. 4294967295)
 	const num = parseInt(raw, 10);
 	if (!Number.isNaN(num) && num >= 0 && num <= 0xffffffff) {
@@ -64,15 +73,6 @@ export function parseColorInput(input: string): ColorChannels | null {
 			g: (num >> 8) & 0xff,
 			b: num & 0xff
 		};
-	}
-
-	// A,R,G,B or R,G,B (0-255)
-	const parts = raw.split(/[\s,]+/).map((s) => parseInt(s.trim(), 10));
-	if (parts.length === 3 && parts.every((n) => !Number.isNaN(n) && n >= 0 && n <= 255)) {
-		return { a: 255, r: parts[0], g: parts[1], b: parts[2] };
-	}
-	if (parts.length === 4 && parts.every((n) => !Number.isNaN(n) && n >= 0 && n <= 255)) {
-		return { a: parts[0], r: parts[1], g: parts[2], b: parts[3] };
 	}
 
 	return null;
