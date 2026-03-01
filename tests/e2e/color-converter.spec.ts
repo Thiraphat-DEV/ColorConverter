@@ -22,10 +22,11 @@ test.describe('Color Converter', () => {
 
 	test('common color chips fill input', async ({ page }) => {
 		await page.goto('/');
+		const colorInput = page.getByPlaceholder(/ff5500/i);
 		await page.getByRole('button', { name: /แดง/i }).click();
-		await expect(page.getByDisplayValue('#ef4444')).toBeVisible();
+		await expect(colorInput).toHaveValue('#ef4444');
 		await page.getByRole('button', { name: /เขียว/i }).click();
-		await expect(page.getByDisplayValue('#22c55e')).toBeVisible();
+		await expect(colorInput).toHaveValue('#22c55e');
 	});
 
 	test('copy button shows feedback', async ({ page }) => {
