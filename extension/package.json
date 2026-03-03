@@ -1,0 +1,31 @@
+{
+	"name": "color-convertery",
+	"displayName": "ColorSpace Converter",
+	"description": "ColorSpace By TB",
+	"version": "0.1.0",
+	"publisher": "ThiraphatB",
+	"engines": {
+		"vscode": "^1.85.0"
+	},
+	"categories": ["Other"],
+	"activationEvents": ["onCommand:colorConverter.open"],
+	"main": "./out/extension.js",
+	"contributes": {
+		"commands": [
+			{
+				"command": "colorConverter.open",
+				"title": "Color Converter: Open"
+			}
+		]
+	},
+	"scripts": {
+		"vscode:prepublish": "npm run compile",
+		"compile": "tsc -p ./",
+		"watch": "tsc -watch -p ./",
+		"package": "npm run compile && npx @vscode/vsce package"
+	},
+	"devDependencies": {
+		"@types/vscode": "^1.85.0",
+		"typescript": "^5.9.0"
+	}
+}
