@@ -30,7 +30,8 @@ playwright/.cache
 coverage
 
 # VS Code Extension
-/extension
+extension
+extension/src/*
 extension/*.vsix
 extension/out
 extension/node_modules
