@@ -28,3 +28,9 @@ test-results
 playwright-report
 playwright/.cache
 coverage
+
+# VS Code Extension
+/extension
+extension/*.vsix
+extension/out
+extension/node_modules
