@@ -1,29 +1,3 @@
-## ขั้นตอนต่อไป (Next steps)
-
-1. **Push โค้ดขึ้น GitHub**  
-   สร้าง repo แล้ว push โปรเจกต์นี้ขึ้นไป (ถ้ายังไม่ได้ทำ)
-
-2. **Deploy เว็บ (Netlify)**  
-   - ไปที่ [Netlify](https://app.netlify.com) → Add new site → Import from Git → เลือก repo นี้  
-   - หรือใช้ CD ใน GitHub Actions: เพิ่ม secrets **NETLIFY_AUTH_TOKEN** และ **NETLIFY_SITE_ID** ใน repo แล้ว push ขึ้น `main`/`master` ระบบจะ build + deploy ให้
-
-3. **ให้ extension เปิด URL เว็บที่ถูก**  
-   ถ้าเว็บ deploy แล้วอยู่ที่ URL อื่น (เช่น `https://colorspaced.netlify.app`) แก้ค่า `COLOR_CONVERTER_URL` ใน `extension/src/extension.ts` ให้ตรงกับ URL จริง แล้ว commit
-
-4. **Publish VS Code Extension**  
-   - สร้าง [publisher](https://marketplace.visualstudio.com/manage) (ชื่อให้ตรงกับ `publisher` ใน `extension/package.json`)  
-   - สร้าง [Azure DevOps PAT](https://dev.azure.com) ที่มี scope **Marketplace (Publish)**  
-   - ใน repo: Settings → Secrets → Actions → เพิ่ม **VSCE_PAT** = token ข้างบน  
-   - สร้าง Release พร้อม tag เช่น `v0.1.0` (หรือรัน workflow "Release VS Code Extension" แบบ manual แล้วใส่ version) → extension จะถูก build และ publish ขึ้น Marketplace
-
-5. **ทดสอบ extension ในเครื่อง**  
-   ```sh
-   cd extension && npm install && npm run compile
-   ```  
-   จากนั้นใน VS Code กด F5 เพื่อเปิด Extension Development Host แล้วลองใช้คำสั่ง "Color Converter: Open"
-
----
-
 ## Development
 
 Once you've created a project and installed dependencies with `npm install` (or `pnpm install` or `yarn`), start a development server:
